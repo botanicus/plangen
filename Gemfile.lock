@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    holidays (1.0.8)
+    pdf-core (0.4.0)
+    prawn (1.3.0)
+      pdf-core (~> 0.4.0)
+      ttfunk (~> 1.4.0)
+    ttfunk (1.4.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  holidays
+  prawn
