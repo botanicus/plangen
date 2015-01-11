@@ -72,14 +72,19 @@ class Schedule
     generate_conditioning_page
 
     pdf.start_new_page(layout: :portrait)
+    title 'My Pinboard'
+    # pdf.text("Place your post-it notes that might be relevant to today here. Things like shopping lists and such. In general, if you don't know which way are you going to accomplish these and these are not of high priority, just put them on a post-it note and stick them here and move them around as necessary.", style: :italic)
+    pdf.move_down 465
+    choices = ['Today\'s challenge is', 'Best question I can ask myself today', 'Unpleasant activity']
+    pdf.move_down 5
+    pdf.text choices[rand(choices.length - 1)], style: :italic
+    line
+
+    pdf.start_new_page(layout: :portrait)
     generate_productivity_page
 
     pdf.start_new_page(layout: :portrait)
     generate_reflection_page
-
-    pdf.start_new_page(layout: :portrait)
-    title 'Notes'
-    20.times { line }
   end
 
   def generate_conditioning_page
@@ -93,18 +98,6 @@ class Schedule
 
     pdf.move_down 10
     print_tasks
-
-    pdf.move_down 10#00 # Make sure this is going to be in the next column.
-    print_gratitude
-
-    pdf.move_down 10
-    choices = ['Today\'s challenge is', 'Best question I can ask myself today', 'Unpleasant activity']
-    pdf.text choices[rand(choices.length - 1)], style: :italic
-    pdf.move_down 5
-    line
-
-    pdf.move_down 10
-    pdf.text '<i>This month\'s habit is:</i>  [  ] <color rgb="000066">SLT</color>', inline_format: true, size: 11
   end
 
   def subtitle(text)
@@ -118,16 +111,17 @@ class Schedule
   end
 
   def generate_productivity_page
-    title 'Pomodoros'
-    subtitle '20 Miles March. Main goal is _________________________________'
-    3.times { line }
-    subtitle 'Job Productivity. Main goal is _________________________________'
-    3.times { line }
-    subtitle 'Maintenance. Main goal is ___________________________________'
-    3.times { line }
+    print_gratitude
+    pdf.move_down 10#00 # Make sure this is going to be in the next column.
+
+    title 'Today I Accomplished'
+    11.times { line }
+
+    pdf.move_down 5
+    line
+
     pdf.move_down 10
-    title 'Errands'
-    8.times { line }
+    pdf.text '<i>I performed the habit of this month:</i>  [  ] <color rgb="000066">SLT</color>', inline_format: true, size: 11
   end
 
   def line(options = Hash.new)
@@ -136,19 +130,23 @@ class Schedule
     pdf.move_down 5
   end
 
+  # TODO: Different for Sat / refl & Sun.
   def print_schedule
     pdf.text 'Schedule', style: :bold
     pdf.move_down 5
-    pdf.text '<b>6:00 – 6:50</b> Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower. <b>7:00 – 12:30</b> Productivity. <b>12:30 – 13:30</b> Recharge. <b>13:30 – 17:00</b> Less structured afternoon. <b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan. <b>From 19:30 on</b> Keep off the blue light. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading. <b>22:30</b> Teeth, meditate & go to sleep.', inline_format: true, style: :italic, size: 11
-
-    # pdf.text '<b>6:00 – 6:50</b> Morning ritual.', size: 11, color: '336633', inline_format: true
-    # pdf.text '<b>7:00 – 12:30</b> Productivity.', size: 11, color: 'ff0000', inline_format: true
-    # pdf.text '<b>12:30 – 13:30</b> Recharge.', size: 11, color: '336633', inline_format: true
-    # pdf.text '<b>13:30 – 17:00</b> Less structured afternoon.', size: 11, color: 'ff0000', inline_format: true
-    # pdf.text '<b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan.', size: 11, color: '336633', inline_format: true
-    # pdf.text '<b>From 19:30 on</b> Keep off the blue light.', size: 11, color: '336633', inline_format: true
-    # pdf.text '<b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.', size: 11, color: '336633', inline_format: true
-    # pdf.text '<b>22:30</b> Teeth, meditate & go to sleep.', size: 11, color: '336633', inline_format: true
+    #pdf.text '<b>6:00 – 6:50</b> Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower. <b>7:00 – 12:30</b> Productivity. <b>12:30 – 13:30</b> Recharge. <b>13:30 – 17:00</b> Less structured afternoon. <b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan. <b>From 19:30 on</b> Keep off the blue light. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading. <b>22:30</b> Teeth, meditate & go to sleep.', inline_format: true, style: :italic, size: 11
+    # This is so late only so I can adjust to the +8 TZ of SF.
+    pdf.text <<-EOF, inline_format: true, style: :italic, size: 11
+      <b>9:20 – 9:50</b> Shower. Cardio and power-posing. TED. Gratitude. Review the day.
+      <b>10:00 – 11:30</b> 20 miles march.
+      <b>11:30 – 12:00</b> Urgencies.
+      <b>12:00 – 13:30</b> Lunch & siesta.
+      <b>13:30 – 17:30</b> Day job.
+      <b>18:00 – 19:00</b> Dinner. Recharge, reflect & plan.
+      <b>From 20:00 on</b> Keep off the blue light.
+      <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.
+      <b>23:30</b> Teeth, meditate & go to sleep.
+    EOF
   end
 
   def print_morning_ritual
@@ -161,23 +159,39 @@ class Schedule
 
   def print_gratitude
     pdf.text 'Gratitude', style: :bold
-    pdf.move_down 5
-    3.times { line }
+    pdf.move_down 6
+    5.times { line }
+
+    pdf.text 'Affirmations', style: :bold
+    pdf.move_down 6
+    5.times { line }
   end
 
   def print_tasks
     pdf.text 'Today\'s Tasks', style: :bold
     pdf.move_down 5
 
+    pdf.text('20 MM:')
+    line(color: 'ff0000')
+
+    pdf.text('Urgencies & Appointments (<i>hopefully empty most of the days</i>):', inline_format: true)
+    line
+    line
+
+    pdf.text('Day Job:')
+    line(color: 'ff0000')
+    line
+
+    pdf.text('Evening Activities:')
     important_tasks.each do |task|
       pdf.text(task, size: 11, color: 'ff0000')
     end
-    (2 - @important_tasks.length).times { line(color: 'ff0000') }
+    (1 - @important_tasks.length).times { line(color: 'ff0000') }
 
     other_tasks.each do |task|
       pdf.text(task, size: 11)
     end
-    (3 - @other_tasks.length).times { line }
+    (1 - @other_tasks.length).times { line }
   end
 
   def pick_memo(kind = :productivity)
