@@ -2,6 +2,8 @@ require 'yaml'
 
 MEMOS = YAML.load_file('input.yml')
 
+# Refactor: important_tasks, other_tasks
+
 class Schedule
   attr_reader :day, :pdf, :important_tasks, :other_tasks
   def initialize(day, pdf)
@@ -19,7 +21,7 @@ class Schedule
     title 'My Pinboard'
     # pdf.text("Place your post-it notes that might be relevant to today here. Things like shopping lists and such. In general, if you don't know which way are you going to accomplish these and these are not of high priority, just put them on a post-it note and stick them here and move them around as necessary.", style: :italic)
     pdf.move_down 465
-    choices = ['Today\'s challenge is', 'Best question I can ask myself today', 'Unpleasant activity']
+    choices = MEMOS[:random_interactive]
     pdf.move_down 5
     pdf.text choices[rand(choices.length - 1)], style: :italic
     line
@@ -65,8 +67,27 @@ class Schedule
     line
 
     pdf.move_down 10
+
+    this_week_habit
+    this_week_learning
+    this_week_tie_knot
+  end
+
+  def this_week_habit
     pdf.text '<i>I performed the habit of this month, properly and mindfully:</i>  [  ] <color rgb="000066">SLT</color>', inline_format: true, size: 11
-    pdf.text 'I am currently learning: Spanish'
+  end
+
+  def this_week_learning
+    MEMOS[:learning].shift if day.monday?
+
+    pdf.text "I am currently learning: #{MEMOS[:learning].first}"
+  end
+
+  def this_week_tie_knot
+    MEMOS[:tie_knots].shift if day.monday?
+
+    pair = MEMOS[:tie_knots].first
+    pdf.text "This week's knot: <a href='#{pair[pair.values.first]}'>#{pair.keys.first}</a>", inline_format: true
   end
 
   def line(options = Hash.new)
@@ -75,24 +96,15 @@ class Schedule
     pdf.move_down 5
   end
 
-  # TODO: Different for Sat / refl & Sun.
   def print_schedule
     pdf.text 'Schedule', style: :bold
     pdf.move_down 5
-    #pdf.text '<b>6:00 – 6:50</b> Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower. <b>7:00 – 12:30</b> Productivity. <b>12:30 – 13:30</b> Recharge. <b>13:30 – 17:00</b> Less structured afternoon. <b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan. <b>From 19:30 on</b> Keep off the blue light. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading. <b>22:30</b> Teeth, meditate & go to sleep.', inline_format: true, style: :italic, size: 11
-    # This is so late only so I can adjust to the +8 TZ of SF.
-# Every morning my training.
-    pdf.text <<-EOF, inline_format: true, style: :italic, size: 11
-      <b>9:20 – 9:50</b> Shower. Cardio and power-posing. TED. Gratitude. Review the day.
-      <b>10:00 – 11:30</b> 20 miles march.
-      <b>11:30 – 12:00</b> Urgencies.
-      <b>12:00 – 13:30</b> Lunch & siesta.
-      <b>13:30 – 17:30</b> Day job.
-      <b>18:00 – 19:00</b> Dinner. Recharge, reflect & plan.
-      <b>From 20:00 on</b> Keep off the blue light.
-      <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.
-      <b>23:30</b> Teeth, meditate & go to sleep.
-    EOF
+    schedule_items = MEMOS[:day_schedule][self.class.name]
+    schedule = schedule_items.reduce('') do |buffer, (time, activity)|
+      "#{buffer} <b>#{time}</b> #{activity}"
+    end
+
+    pdf.text(schedule, inline_format: true, style: :italic, size: 11)
   end
 
   def print_morning_ritual
@@ -120,6 +132,7 @@ class Schedule
   end
 
   def print_tasks
+    # Mindfulness notes after each block, rating how it went, immediate reflection.
     pdf.text 'Today\'s Tasks', style: :bold
     pdf.move_down 5
 

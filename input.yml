@@ -1,10 +1,9 @@
-# Learning days, learn 1 skill at a time (Spanish OR Chinese).
-# Wednesday afternoon off & offline (RELAX!). Swimming.
-# Sunday Weight lifting.
-# Mindfulness notes throughout the day, rating how it went, immediate reflection.
-# TODO: zarad uklid pravidelne, chrome 0, evernote, room.
 ---
-:conditioning:
+
+##########
+# Memos. #
+##########
+
 :productivity:
   - >
     "If it's your job to eat a frog, it's best to do it first thing in the morning. And If it's your job to eat two frogs, it's best to eat the biggest one first." ~ M Twain
@@ -15,25 +14,97 @@
   - "You're awesome!"
   - "Am I being productive or just active?"
   - "Parkinson's Law: A task will swell in (perceived) importance and complexity in relation to the time allotted for its completion."
-  - "Do or do not... there is no try!"
+  - "Do or do not ... there is no try!"
   - "Remember to practice mindfulness."
   - "Keep calm. Be gentle to your nerves."
-:maintenance:
-:relaxation:
-:habits:
-  - SLT. 20 miles march. Meditation. Reading.
+
+###################
+# Stable Schedule #
+###################
+
+# Day Schedule #
+
+# This is so late only so I can adjust to the +8 TZ of SF.
+# Every morning my training.
+#pdf.text '<b>6:00 – 6:50</b> Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower. <b>7:00 – 12:30</b> Productivity. <b>12:30 – 13:30</b> Recharge. <b>13:30 – 17:00</b> Less structured afternoon. <b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan. <b>From 19:30 on</b> Keep off the blue light. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading. <b>22:30</b> Teeth, meditate & go to sleep.', inline_format: true, style: :italic, size: 11
+:day_schedule:
+  OfficeWorkdaySchedule:
+    '9:20': Shower. Cardio and power-posing. TED. Gratitude. Review the day.
+    '10:00 – 11:30': 20 miles march.
+    '11:30 – 12:00': Urgencies.
+    '12:00 – 13:30': Lunch & siesta.
+    '13:30 – 17:30': Day job.
+    '18:00 – 19:00': Dinner. Recharge, reflect & plan.
+    'From 20:00 on': Keep off the blue light. Offline.
+    '19:30 – 21:00': Clean up. Manual work (HB) & reading.
+    '23:30': Teeth, meditate & go to sleep.
+  SaturdayAndHolidaysSchedule:
+    'a': 'b'
+  ReflectionDaySchedule:
+    'a': 'b'
+
+# By Day of the Week #
+
+:by_day:
+  :wed: Swimming. Afternoon off.
+  :sun: Weight lifting.
+
+# By Week #
+
 :weekly_challenges:
   - Eat only vegetables (a bit of protein such as tuna allowed once a day). Drink only water and fresh juices. Green tea only till 2 PM.
   - Get 5 numbers this week.
   # last week (retreat)
-:cleanup:
+
+:learning:
+  - Energies etc, Samson-style.
+  - Wing Chun.
+  - Spanish.
+  - Development env (ZSH, Sublime Text).
+  # - Mandarin.
+
+:tie_knots:
+  - Eldredge knot: https://www.youtube.com/watch?v=gKs7WwrEaIs
+  - Trinity knot: https://www.youtube.com/watch?v=2Ioxajtj2gA
+  - Tulip knot: https://www.youtube.com/watch?v=K1UH_7jOwD0
+  - Van Wijk knot: https://www.youtube.com/watch?v=YBsIQZ3GOoY
+  - Cape knot: https://www.youtube.com/watch?v=gUVBQ00iwTI
+  - Truelove knot: https://www.youtube.com/watch?v=Hrgu75j-Llw
+  - Double Eldredge knot: https://www.youtube.com/watch?v=jLYWJX4779A
+  - Vidalia knot: https://www.youtube.com/watch?v=AJn7gQDl03A
+  - Merovingian or Ediety Knot: https://www.youtube.com/watch?v=qFdk-IT2cmg
+  - Agape knot: https://www.youtube.com/watch?v=46KL020MLDY
+
+# By Month #
+
+:habits:
+  - SLT. 20 miles march. Meditation. Reading.
+  - Get up immediately from bed. # What if I wake up before my opportunity clock?
+
+##########################################
+# Regular Activities, Assigned Randomly. #
+##########################################
+
+:maintenance:
+  - Tab Wrangler reduce to 25 max.
   - Process ten Evernote notes.
-  - Process ten files from ~/Dropbox/Inbox.
+  - Process ten files from ~/Dropbox/WIP/Inbox.
   - Clean up the desktop.
-:random:
-  - Lean to tie a new necktie knot.
-  - Practise Spanish on Duolingo.
-  - Read articles saved to Pocket.
   - Delete one app from my iPhone.
   - Delete one app from my iPad.
+  - Review programs in the menu bar and in the dock.
+  - Review system settings.
+  - Review notifications settings.
+  - Improve my dotfiles.
+  - Improve my ZSH config.
+  - Improve my Sublime Text config.
+  - Sort things on my HD.
+
+:random:
   - Take a walk.
+  - Read articles saved to Pocket.
+
+:random_interactive:
+  - Today's challenge
+  - Best question to ask myself today
+  - Unpleasant activity I will do today

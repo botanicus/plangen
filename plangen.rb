@@ -4,7 +4,7 @@ require 'prawn'
 require_relative 'lib/plangen.rb'
 
 # Start day.
-start_day = current_day = Day.new(2015, 1, 1)
+start_day = current_day = Day.new(Time.now.year, Time.now.month, Time.now.day)
 
 # PDF document settings.
 pdf = Prawn::Document.new(
