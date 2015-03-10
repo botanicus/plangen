@@ -32,12 +32,12 @@ class Day < Date
 
   def bank_holiday
     if bank_holiday?
-      holidays(:us, :observed).map { |holiday| holiday[:name] }.join(' and ')
+      holidays(:uk, :observed).map { |holiday| holiday[:name] }.join(' and ')
     end
   end
 
   def bank_holiday?
-    holiday?(:us, :observed)
+    holiday?(:uk, :observed)
   end
 
   def startup_workday?
