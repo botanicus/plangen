@@ -13,14 +13,12 @@ class Schedule
     setup
   end
 
+  # Fasting, reading fasting, shopping fasting etc.
   def generate
     pdf.start_new_page(layout: :portrait)
     generate_conditioning_page
 
-    pdf.start_new_page(layout: :portrait)
-    title 'My Pinboard'
-    # pdf.text("Place your post-it notes that might be relevant to today here. Things like shopping lists and such. In general, if you don't know which way are you going to accomplish these and these are not of high priority, just put them on a post-it note and stick them here and move them around as necessary.", style: :italic)
-    pdf.move_down 465
+    # pdf.start_new_page(layout: :portrait)
     choices = MEMOS[:random_interactive]
     pdf.move_down 5
     pdf.text choices[rand(choices.length - 1)], style: :italic
@@ -57,7 +55,7 @@ class Schedule
   end
 
   def generate_productivity_page
-    print_gratitude
+    print_mindset_commitments
     pdf.move_down 10#00 # Make sure this is going to be in the next column.
 
     title 'Today I Accomplished'
@@ -100,6 +98,7 @@ class Schedule
     pdf.text 'Schedule', style: :bold
     pdf.move_down 5
     schedule_items = MEMOS[:day_schedule][self.class.name]
+    raise "No day_schedule for #{self.class.name}" unless schedule_items
     schedule = schedule_items.reduce('') do |buffer, (time, activity)|
       "#{buffer} <b>#{time}</b> #{activity}"
     end
@@ -115,15 +114,7 @@ class Schedule
     # pdf.text 'Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower.', size: 11, style: :italic
   end
 
-  def print_gratitude
-    pdf.text 'Gratitude', style: :bold
-    pdf.move_down 6
-    5.times { line }
-
-    pdf.text 'Affirmations', style: :bold
-    pdf.move_down 6
-    5.times { line }
-
+  def print_mindset_commitments
     pdf.text 'My Mindset'
     pdf.move_down 6
     pdf.text '[  ] I commit myself to be happy.'
@@ -143,11 +134,7 @@ class Schedule
     line
     line
 
-    pdf.text('Day Job:')
-    line(color: 'ff0000')
-    line
-
-    pdf.text('Evening Activities:')
+    pdf.text('Lunch Time / Evening Activities:')
     important_tasks.each do |task|
       pdf.text(task, size: 11, color: 'ff0000')
     end

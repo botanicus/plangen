@@ -1,9 +1,9 @@
-class ReflectionDaySchedule < Schedule
+# is a relaxation, reflection, planning & journalling day
+# Vykartacovat klobouky, boty.
+# Review plangen or other self-programming, work on my ebook.
+
+class SundaySchedule < Schedule
   HEADER_COLOUR = '336633'
-  # is a relaxation, reflection, planning & journalling day (#{current_day.sunday? ? 'Sunday' : 'monthly catch-up'}).
-  # Vykartacovat klobouky, boty.
-  # Coursera
-  # review plangen or other self-programming, work on my ebook. Go through all the notes from this week.
 
   def setup
   end
@@ -22,4 +22,7 @@ class ReflectionDaySchedule < Schedule
     end
     (1 - @other_tasks.length).times { line }
   end
+end
+
+class MonthReflectionDaySchedule < SundaySchedule
 end

@@ -1,22 +1,28 @@
 #!/usr/bin/env ruby
 
-require 'prawn'
-require_relative 'lib/plangen.rb'
+# == Usage == #
+# ./plangen.rb         # Defaults to the current month.
+# ./plangen.rb 2015/4  # April 2015.
+
+$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+
+require 'plangen'
+
+# Configuration.
+COUNTRY = :gb
 
 # Start day.
-start_day = current_day = Day.new(Time.now.year, Time.now.month, Time.now.day)
-
-# PDF document settings.
-pdf = Prawn::Document.new(
-  page_size: 'A5',
-  page_layout: :landscape,
-  skip_page_creation: true)
-
-# Add schedule for all the days of the month to the PDF document.
-while start_day.month == current_day.month
-  current_day.schedule(pdf).generate
-  current_day += 1
+if date = ARGV.shift
+  year, month = date.split('/').map(&:to_i)
+else
+  year, month = Time.now.year, Time.now.month
 end
 
-# Render the PDF output file.
-pdf.render_file(start_day.strftime('%B Schedule.pdf'))
+# Load user-specific schedules.
+Dir.glob('schedules/*.rb').each do |path|
+  load path
+end
+
+# Generate the PDF for given month.
+schedule_generator = MonthScheduleGenerator.new(year, month)
+schedule_generator.generate_pdf_document

@@ -17,6 +17,7 @@
   - "Do or do not ... there is no try!"
   - "Remember to practice mindfulness."
   - "Keep calm. Be gentle to your nerves."
+  - "Mornings should be structured, afternoon rather unstructed."
 
 ###################
 # Stable Schedule #
@@ -24,23 +25,25 @@
 
 # Day Schedule #
 
-# This is so late only so I can adjust to the +8 TZ of SF.
-# Every morning my training.
-#pdf.text '<b>6:00 – 6:50</b> Meditation. Set timer to 30 min. Cardio and power-posing. Gratitude. Review the day. Shower. <b>7:00 – 12:30</b> Productivity. <b>12:30 – 13:30</b> Recharge. <b>13:30 – 17:00</b> Less structured afternoon. <b>17:00 – 19:30</b> Dinner. Recharge, reflect & plan. <b>From 19:30 on</b> Keep off the blue light. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading. <b>22:30</b> Teeth, meditate & go to sleep.', inline_format: true, style: :italic, size: 11
+# Productivity. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.
 :day_schedule:
   OfficeWorkdaySchedule:
-    '9:20': Shower. Cardio and power-posing. TED. Gratitude. Review the day.
-    '10:00 – 11:30': 20 miles march.
-    '11:30 – 12:00': Urgencies.
-    '12:00 – 13:30': Lunch & siesta.
-    '13:30 – 17:30': Day job.
-    '18:00 – 19:00': Dinner. Recharge, reflect & plan.
-    'From 20:00 on': Keep off the blue light. Offline.
-    '19:30 – 21:00': Clean up. Manual work (HB) & reading.
-    '23:30': Teeth, meditate & go to sleep.
-  SaturdayAndHolidaysSchedule:
+    'Home 6:20': "WC training, shower, 5MJ."
+    'Train 7:40': "Tinder. Duolingo. Coursera. Reading. Podcasts (if I can't sit)."
+    'Office 8:50': "Review the day. 20 miles march."
+    'Lunch break': "Urgencies."
+    'Train': "E-mails. Review Redbooth tasks."
+    'Dinner': "Plan the next day. Reflect."
+    '21:00': "Get home & go offline. Cleaning & manual work (HB). Read a book."
+    '21:40': "Teeth, meditate & go to sleep."
+  SaturdaySchedule:
     'a': 'b'
-  ReflectionDaySchedule:
+  HolidaysSchedule:
+    'a': 'b'
+  SundaySchedule:
+    'a': 'b'
+  MonthReflectionDaySchedule:
+    # TED, motivation
     'a': 'b'
 
 # By Day of the Week #
