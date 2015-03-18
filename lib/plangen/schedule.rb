@@ -1,20 +1,51 @@
 require 'yaml'
 
-MEMOS = YAML.load_file('input.yml')
+MEMOS = YAML.load_file('data/input.yml')
 
 # Refactor: important_tasks, other_tasks
 
+class NoScheduleFoundError < StandardError
+  def initialize(day)
+    super("No schedule found for #{day}.")
+  end
+end
+
 class Schedule
-  attr_reader :day, :pdf, :important_tasks, :other_tasks
-  def initialize(day, pdf)
-    @day, @pdf = day, pdf
+  @@schedules = Array.new
+  def self.schedules
+    @@schedules
+  end
+
+  def self.inherited(base)
+    @@schedules << self
+  end
+
+  def self.schedule_class_for_day(month, day)
+    self.schedules.reverse.find do |schedule|
+      schedule.match?(month, day)
+    end
+  end
+
+  def self.schedule_for_day(month, day)
+    schedule_class = self.schedule_class_for_day(month, day)
+    raise NoScheduleFoundError.new(day) if schedule_class.nil?
+    schedule_class.new(day)
+  end
+
+  def self.match?(month, day)
+    raise NotImplementedError.new('Redefine in subclasses.')
+  end
+
+  attr_reader :day, :important_tasks, :other_tasks
+  def initialize(day)
+    @day = day
     @important_tasks, @other_tasks = Array.new, Array.new
 
     setup
   end
 
   # Fasting, reading fasting, shopping fasting etc.
-  def generate
+  def generate(pdf)
     pdf.start_new_page(layout: :portrait)
     generate_conditioning_page
 

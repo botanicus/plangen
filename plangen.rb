@@ -19,7 +19,7 @@ else
 end
 
 # Load user-specific schedules.
-Dir.glob('schedules/*.rb').each do |path|
+Dir.glob('data/schedules/*.rb').each do |path|
   load path
 end
 
