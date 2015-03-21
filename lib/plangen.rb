@@ -1,7 +1,10 @@
+require 'yaml'
 require 'prawn'
 
 require 'plangen/month'
 require 'plangen/schedule'
+
+MEMOS = YAML.load_file('data/input.yml')
 
 class MonthScheduleGenerator < Month
   def pdf

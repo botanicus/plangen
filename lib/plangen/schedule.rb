@@ -1,9 +1,3 @@
-require 'yaml'
-
-MEMOS = YAML.load_file('data/input.yml')
-
-# Refactor: important_tasks, other_tasks
-
 class NoScheduleFoundError < StandardError
   def initialize(day)
     super("No schedule found for #{day}.")
@@ -16,10 +10,11 @@ class Schedule
     @@schedules
   end
 
-  def self.inherited(base)
-    @@schedules << self
+  def self.inherited(subclass)
+    @@schedules << subclass
   end
 
+  # @api private
   def self.schedule_class_for_day(month, day)
     self.schedules.reverse.find do |schedule|
       schedule.match?(month, day)
@@ -41,7 +36,7 @@ class Schedule
     @day = day
     @important_tasks, @other_tasks = Array.new, Array.new
 
-    setup
+    # setup
   end
 
   # Fasting, reading fasting, shopping fasting etc.
