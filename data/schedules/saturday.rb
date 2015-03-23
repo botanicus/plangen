@@ -1,13 +1,16 @@
-# Catch up & clean. Shopping day.
-# Go through all the notes from this week.
-# Chrome 0, inbox 0, GTD review.
-
 class SaturdaySchedule < Schedule
   HEADER_COLOUR = '330099'
 
-  def setup
+  def self.match?(month, day)
+    day.saturday?
   end
 
-  def generate_afternoon_page
+  def setup
+    # Do bigger shopping on the first Saturday of any month.
+    if self.day.day <= 6
+      self.tasks.important.push('Shopping for clothes and bigger items (including on Amazon).')
+    end
+
+    self.tasks.important.push('Buy food for the next week.')
   end
 end

@@ -17,7 +17,7 @@
   - "Do or do not ... there is no try!"
   - "Remember to practice mindfulness."
   - "Keep calm. Be gentle to your nerves."
-  - "Mornings should be structured, afternoon rather unstructed."
+  - "Mornings should be structured, afternoons less so."
 
 ###################
 # Stable Schedule #
@@ -28,29 +28,29 @@
 # Productivity. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.
 :day_schedule:
   OfficeWorkdaySchedule:
-    'Home 6:20': "WC training, shower, 5MJ."
-    'Train 7:40': "Tinder. Duolingo. Coursera. Reading. Podcasts (if I can't sit)."
-    'Office 8:50': "Review the day. 20 miles march."
-    'Lunch break': "Urgencies."
-    'Train': "E-mails. Review Redbooth tasks."
-    'Dinner': "Plan the next day. Reflect."
-    '21:00': "Get home & go offline. Cleaning & manual work (HB). Read a book."
-    '21:40': "Teeth, meditate & go to sleep."
+    'Home 6:50': 'Drink water. Take yoghurt from the fridge. WC training, breakfast, shower, 5MJ.'
+    'Train 7:50': 'Tinder. Duolingo. Coursera. Reading. Podcasts.'
+    'Office 8:30': 'Review the day. 20 miles march.'
+    'Lunch break': 'Urgencies.'
+    'Train': 'E-mails. GTD review.'
+    'Dinner': 'Plan the next day. Reflect.'
+    '21:00': 'Go home & go offline. Cleaning & manual work (HB). Read a book.'
+    '21:40': 'Teeth, meditate & go to sleep.'
   SaturdaySchedule:
-    'a': 'b'
+    - 'Morning ritual.'
+    - 'GTD review. Inbox 0. Chrome 0. Go through my notes.'
   HolidaysSchedule:
-    'a': 'b'
+    - 'Morning ritual.'
+    - 'Do the productive work first (PPT).'
+    - 'Relax.'
   SundaySchedule:
-    'a': 'b'
+    - 'Review plangen or other self-programming, work on my ebook.'
+    - 'Shoes polishing.'
+    - 'Laundry.'
+    - 'Reflection, planning & journalling.'
   MonthReflectionDaySchedule:
-    # TED, motivation
-    'a': 'b'
-
-# By Day of the Week #
-
-:by_day:
-  :wed: Swimming. Afternoon off.
-  :sun: Weight lifting.
+    - 'Watch TED & motivation videos.'
+    - 'Reflection, planning & journalling.'
 
 # By Week #
 
@@ -117,3 +117,4 @@
   - Today's challenge
   - Best question to ask myself today
   - Unpleasant activity I will do today
+  - Tonight's meetup

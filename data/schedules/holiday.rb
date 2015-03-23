@@ -1,14 +1,7 @@
-# Do the productive work first (3+2),
-# but don't forget to relax.
-
 class HolidaySchedule < Schedule
   HEADER_COLOUR = '330099'
 
-  def setup
-    # Default to startup.
-  end
-
-  def generate_afternoon_page
-    # HB instead of cleanup
+  def self.match?(month, day)
+    day.bank_holiday? && ! day.weekend?
   end
 end

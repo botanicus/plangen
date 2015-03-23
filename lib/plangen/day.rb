@@ -6,6 +6,10 @@ class Day < Date
     ! (self.saturday? || self.sunday? || self.bank_holiday?)
   end
 
+  def weekend?
+    self.saturday? || self.sunday?
+  end
+
   def bank_holiday?
     holiday?(COUNTRY, :observed)
   end
