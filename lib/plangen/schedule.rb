@@ -1,9 +1,15 @@
 require 'plangen/tasklist'
 require 'plangen/mixins/pdf_formatting'
 
-class NoScheduleFoundError < StandardError
-  def initialize(day)
-    super("No schedule found for #{day}.")
+module Memos
+  def self.memos
+    @memos ||= YAML.load_file('data/input.yml')
+  rescue Errno::ENOENT
+    raise ConfigurationMissingError.new
+  end
+
+  def self.[](key)
+    self.memos[key]
   end
 end
 
@@ -77,12 +83,12 @@ class Schedule
   def print_header(pdf)
     pdf.text day.strftime("%A %-d/%-m/%Y #{day.bank_holiday if day.bank_holiday?}"), style: :bold, color: self.class::HEADER_COLOUR, align: :center, size: 14
     pdf.move_down 10
-    memo = MEMOS[:productivity].sample
+    memo = Memos[:productivity].sample
     pdf.text memo, style: :italic, size: 11, align: :center
   end
 
   def schedule_items
-    MEMOS[:day_schedule][self.class.name]
+    Memos[:day_schedule][self.class.name]
   end
 
   def print_schedule(pdf)
@@ -111,7 +117,7 @@ class Schedule
   end
 
   def random_interactive
-    MEMOS[:random_interactive].sample
+    Memos[:random_interactive].sample
   end
 
   def print_random_activity(pdf)
@@ -139,7 +145,7 @@ class Schedule
   end
 
   def mindset_commitments
-    MEMOS[:mindset_commitments]
+    Memos[:mindset_commitments]
   end
 
   def print_mindset_commitments(pdf)
@@ -155,16 +161,16 @@ class Schedule
   end
 
   def this_week_learning(pdf)
-    MEMOS[:learning].shift if day.monday?
+    Memos[:learning].shift if day.monday?
 
-    pdf.text "I am currently learning: #{MEMOS[:learning].first}"
+    pdf.text "I am currently learning: #{Memos[:learning].first}"
   end
 
   # Fasting, reading fasting, shopping fasting etc.
   def this_week_tie_knot(pdf)
-    MEMOS[:tie_knots].shift if day.monday?
+    Memos[:tie_knots].shift if day.monday?
 
-    pair = MEMOS[:tie_knots].first
+    pair = Memos[:tie_knots].first
     pdf.text "This week's knot: <a href='#{pair[pair.values.first]}'>#{pair.keys.first}</a>", inline_format: true
   end
 

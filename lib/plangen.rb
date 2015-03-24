@@ -1,10 +1,9 @@
 require 'yaml'
 require 'prawn'
 
+require 'plangen/errors'
 require 'plangen/month'
 require 'plangen/schedule'
-
-MEMOS = YAML.load_file('data/input.yml')
 
 # TODO: This probably shouldn't inherit from
 # Month, but rather just instantiate it.
