@@ -5,6 +5,11 @@ class SundaySchedule < Schedule
     day.sunday?
   end
 
+  def setup
+    self.tasks.list('Important', :important)
+    self.tasks.list('Errands', :errands)
+  end
+
   def print_tasks(pdf)
     pdf.text 'Today\'s Tasks', style: :bold
     pdf.move_down 5

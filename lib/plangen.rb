@@ -1,7 +1,6 @@
 require 'yaml'
 require 'prawn'
 
-require 'plangen/errors'
 require 'plangen/month'
 require 'plangen/schedule'
 

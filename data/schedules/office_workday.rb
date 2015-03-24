@@ -13,8 +13,8 @@ class OfficeWorkdaySchedule < Schedule
   def setup
     # TODO: Make the schedule accessible.
     self.tasks.list('20 MM', :twenty_miles_march)
-    pdf.text('Urgencies & Appointments (<i>hopefully empty most of the days</i>)', :urgencies_and_appointments)
-    (self.tasks.urgencies_and_appointments << nil) << nil
+    # self.tasks.list('Urgencies & Appointments (<i>hopefully empty most of the days</i>)', :urgencies_and_appointments)
+    # (self.tasks.urgencies_and_appointments << nil) << nil
     self.tasks.list('Lunch Break', :lunchbreak)
     self.tasks.list('Evening', :evening)
 
@@ -25,8 +25,8 @@ class OfficeWorkdaySchedule < Schedule
     if self.day.thursday?
       # TODO: Where to put this? schedule? Elsewhere?
       # TODO: Make this_week etc area accessible.
-      self.tasks.important.unshift('Fasting.')
-      self.tasks.important.push('Relax at the evening. Go to bed early.')
+      self.tasks.lunchbreak.unshift('Fasting.')
+      self.tasks.evening.push('Relax at the evening. Go to bed early.')
     end
   end
 end

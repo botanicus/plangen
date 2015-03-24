@@ -1,3 +1,4 @@
+require 'plangen/errors'
 require 'plangen/tasklist'
 require 'plangen/mixins/pdf_formatting'
 

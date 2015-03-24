@@ -6,6 +6,8 @@ class SaturdaySchedule < Schedule
   end
 
   def setup
+    self.tasks.list('Important', :important)
+
     # Do bigger shopping on the first Saturday of any month.
     if self.day.day <= 6
       self.tasks.important.push('Shopping for clothes and bigger items (including on Amazon).')
