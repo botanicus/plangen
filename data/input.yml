@@ -29,7 +29,7 @@
 :day_schedule:
   OfficeWorkdaySchedule:
     'Home 6:50': 'Drink water. Take yoghurt from the fridge. WC training, breakfast, shower, 5MJ.'
-    'Train 7:50': 'Tinder. Duolingo. Coursera. Reading. Podcasts.'
+    'Train 7:50': 'Duolingo. Tinder. Coursera. Reading. Podcasts.'
     'Office 8:30': 'Review the day. 20 miles march.'
     'Lunch break': 'Urgencies.'
     'Train': 'E-mails. GTD review.'
@@ -89,6 +89,11 @@
 :habits:
   - SLT. 20 miles march. Meditation. Reading.
   - Get up immediately from bed. # What if I wake up before my opportunity clock?
+
+:mindset_commitments:
+  - '[  ] I commit myself to be happy.'
+  - '[  ] I commit myself to let go.'
+  - '[  ] I commit myself to always priorities and use 80/20. I will delegate what I do not have to do personally and I will not do at all what is not important.'
 
 ##########################################
 # Regular Activities, Assigned Randomly. #

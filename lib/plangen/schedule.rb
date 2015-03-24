@@ -98,12 +98,17 @@ class Schedule
     pdf.text memo, style: :italic, size: 11, align: :center
   end
 
+  def schedule_items
+    MEMOS[:day_schedule][self.class.name]
+  end
+
   def print_schedule(pdf)
     pdf.text 'Schedule', style: :bold
     pdf.move_down 5
-    schedule_items = MEMOS[:day_schedule][self.class.name]
     raise "No day_schedule for #{self.class.name}" unless schedule_items
     schedule = schedule_items.reduce('') do |buffer, (time, activity)|
+      # Schedule items can be either a hash or an array.
+      activity = time if activity.nil?
       "#{buffer} <b>#{time}</b> #{activity}"
     end
 
@@ -111,33 +116,24 @@ class Schedule
   end
 
   def print_tasks(pdf)
-    # Mindfulness notes after each block, rating how it went, immediate reflection.
     pdf.text 'Today\'s Tasks', style: :bold
     pdf.move_down 5
 
-    pdf.text('20 MM:')
-    line(pdf, color: 'ff0000')
-
-    pdf.text('Urgencies & Appointments (<i>hopefully empty most of the days</i>):', inline_format: true)
-    line(pdf)
-    line(pdf)
-
-    pdf.text('Lunch Time / Evening Activities:')
-    self.tasks.important.each do |task|
-      pdf.text(task, size: 11, color: 'ff0000')
+    self.tasks.each do |label, items|
+      pdf.text(label)
+      items.each do |item|
+        pdf.text(item || line(pdf))
+      end
     end
-    (1 - self.tasks.important.length).times { line(pdf, color: 'ff0000') }
+  end
 
-    self.tasks.errands.each do |task|
-      pdf.text(task, size: 11)
-    end
-    (1 - self.tasks.errands.length).times { line(pdf) }
+  def random_interactive
+    MEMOS[:random_interactive].sample
   end
 
   def print_random_activity(pdf)
-    choices = MEMOS[:random_interactive]
     pdf.move_down 5
-    pdf.text choices[rand(choices.length - 1)], style: :italic
+    pdf.text(self.random_interactive, style: :italic)
     line(pdf)
   end
 
@@ -159,12 +155,16 @@ class Schedule
     this_week_tie_knot(pdf)
   end
 
+  def mindset_commitments
+    MEMOS[:mindset_commitments]
+  end
+
   def print_mindset_commitments(pdf)
     pdf.text 'My Mindset'
     pdf.move_down 6
-    pdf.text '[  ] I commit myself to be happy.'
-    pdf.text '[  ] I commit myself to let go.'
-    pdf.text '[  ] I commit myself to always priorities and use 80/20. I will delegate what I do not have to do personally and I will not do at all what is not important.'
+    self.mindset_commitments.each do |commitment|
+      pdf.text(commitment)
+    end
   end
 
   def this_week_habit(pdf)
