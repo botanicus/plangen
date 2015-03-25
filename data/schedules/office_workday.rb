@@ -12,11 +12,10 @@ class OfficeWorkdaySchedule < Schedule
 
   def setup
     # TODO: Make the schedule accessible.
-    self.tasks.list('20 MM', :twenty_miles_march)
+    self.tasks.list('20 MM', :twenty_miles_march, 1)
     # self.tasks.list('Urgencies & Appointments (<i>hopefully empty most of the days</i>)', :urgencies_and_appointments)
-    # (self.tasks.urgencies_and_appointments << nil) << nil
-    self.tasks.list('Lunch Break', :lunchbreak)
-    self.tasks.list('Evening', :evening)
+    self.tasks.list('Lunch Break', :lunchbreak, 3)
+    self.tasks.list('Evening', :evening, 3)
 
     if day.tuesday? || day.thursday?
       self.tasks.lunchbreak.push('Go swimming.')

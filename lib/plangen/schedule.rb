@@ -112,7 +112,7 @@ class Schedule
     self.tasks.each do |label, items|
       pdf.text(label)
       items.each do |item|
-        pdf.text(item || line(pdf))
+        item ? pdf.text(item) : line(pdf)
       end
     end
   end

@@ -8,9 +8,9 @@ describe TaskList do
       subject.list('Morning', :morning)
       subject.morning.push('Go jogging.')
       subject.morning.push('Go to work.')
-      subject.list('Lunch break', :lunchbreak)
+      subject.list('Lunch break', :lunchbreak, 3)
       subject.lunchbreak.push('Go swimming.')
-      subject.list('Evening', :evening)
+      subject.list('Evening', :evening, 0)
 
       # This tests #each as well.
       items = subject.each.to_a
@@ -18,7 +18,7 @@ describe TaskList do
       expect(items[0][1]).to eq(['Go jogging.', 'Go to work.'])
 
       expect(items[1][0]).to eq('Lunch break')
-      expect(items[1][1]).to eq(['Go swimming.'])
+      expect(items[1][1]).to eq(['Go swimming.', nil, nil])
 
       expect(items[2][0]).to eq('Evening')
       expect(items[2][1]).to eq([])

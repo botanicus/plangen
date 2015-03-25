@@ -9,6 +9,7 @@ $LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 require 'plangen'
 
 # Configuration.
+# TODO: Move it elsewhere.
 COUNTRY = :gb
 
 # Start day.
