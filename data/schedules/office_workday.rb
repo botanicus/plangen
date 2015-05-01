@@ -54,6 +54,7 @@ class OfficeThursdaySchedule < OfficeWorkdaySchedule
 
     # TODO: Where to put this? schedule? Elsewhere?
     # TODO: Make this_week etc area accessible.
+    # Merge schedule & tasks?
     self.tasks.lunchbreak.unshift('Fasting.')
     self.tasks.evening.push('Relax at the evening. Go to bed early.')
   end
@@ -67,6 +68,7 @@ class OfficeFridaySchedule < OfficeWorkdaySchedule
   def setup
     super
 
+    # Do I need .dup?
     self.schedule_items.delete('21:00')
     self.schedule_items.delete('21:40')
   end

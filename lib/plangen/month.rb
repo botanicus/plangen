@@ -8,7 +8,7 @@ class Month
   end
 
   def name
-    Day::MONTHNAMES[Day.today.month]
+    Day::MONTHNAMES[@start_day.month]
   end
 
   def days

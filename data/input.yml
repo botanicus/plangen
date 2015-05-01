@@ -18,6 +18,7 @@
   - "Remember to practice mindfulness."
   - "Keep calm. Be gentle to your nerves."
   - "Mornings should be structured, afternoons less so."
+  - "Every day you reinvent yourself. You're always in motion. But you decide every day: forward or backward."
 
 ###################
 # Stable Schedule #
@@ -28,18 +29,18 @@
 # Productivity. <b>19:30 – 21:00</b> Clean up. Manual work (HB) & reading.
 :day_schedule:
   OfficeWorkdaySchedule:
-    'Home 6:50': 'Drink water. Take yoghurt from the fridge. WC training, breakfast, shower, 5MJ.'
-    'Train 7:50': 'Duolingo. Tinder. Coursera. Reading. Podcasts.'
+    'Home 6:50': 'Drink water. Take yoghurt from the fridge. WC training, breakfast, shower & 5MJ.'
+    'Train 7:50': 'Duolingo, Tinder & Coursera. (Reading & Podcasts.)'
     'Office 8:30': 'Review the day. 20 miles march.'
-    'Lunch break': 'Urgencies.'
+    'Lunch break': 'Urgencies. Evernote clean-up.'
     'Train': 'E-mails. GTD review.'
     'Dinner': 'Plan the next day. Reflect.'
-    '21:00': 'Go home & go offline. Cleaning & manual work (HB). Read a book.'
-    '21:40': 'Teeth, meditate & go to sleep.'
+    '21:00': 'Go home & meditate. Go offline. Cleaning & manual work (HB). Read a book.'
+    '21:40': 'Teeth & go to sleep.'
   SaturdaySchedule:
     - 'Morning ritual.'
     - 'GTD review. Inbox 0. Chrome 0. Go through my notes.'
-  HolidaysSchedule:
+  HolidaySchedule:
     - 'Morning ritual.'
     - 'Do the productive work first (PPT).'
     - 'Relax.'
@@ -67,6 +68,7 @@
   # - Mandarin.
 
 :tie_knots:
+  - Speed-tieing: https://www.youtube.com/watch?v=Iw6fcE2YSng
   - Eldredge knot: https://www.youtube.com/watch?v=gKs7WwrEaIs
   - Trinity knot: https://www.youtube.com/watch?v=2Ioxajtj2gA
   - Tulip knot: https://www.youtube.com/watch?v=K1UH_7jOwD0

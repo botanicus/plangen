@@ -89,7 +89,18 @@ class Schedule
   end
 
   def schedule_items
-    Memos[:day_schedule][self.class.name]
+    inheritance_chain, klass = [self.class.name], self.class
+
+    until klass.superclass == Object
+      inheritance_chain.push(klass.superclass.name)
+      klass = klass.superclass
+    end
+
+    klass = inheritance_chain.find do |klass|
+      Memos[:day_schedule].has_key?(klass)
+    end
+
+    Memos[:day_schedule][klass]
   end
 
   def print_schedule(pdf)
@@ -106,13 +117,18 @@ class Schedule
   end
 
   def print_tasks(pdf)
-    pdf.text 'Today\'s Tasks', style: :bold
+    title(pdf, 'Today\'s Tasks')
     pdf.move_down 5
 
     self.tasks.each do |label, items|
-      pdf.text(label)
-      items.each do |item|
-        item ? pdf.text(item) : line(pdf)
+      if items.length == 1
+        text = "<i>#{label}:</i> #{items[0] ? pdf.text(items[0]) : '____'}"
+        subtitle(pdf, text)
+      else
+        subtitle(pdf, label)
+        items.each do |item|
+          item ? pdf.text(item) : line(pdf)
+        end
       end
     end
   end
