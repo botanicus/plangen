@@ -1,8 +1,11 @@
 class OfficeWorkdaySchedule < Schedule
-  HEADER_COLOUR = 'ff0000'
-
   def self.match?(month, day)
     false
+  end
+
+  # Instance methods.
+  def day_title_options
+    super.merge(color: 'ff0000')
   end
 
   def setup

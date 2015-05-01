@@ -73,19 +73,27 @@ class Schedule
     print_schedule(pdf)
 
     pdf.move_down 10
-    # print_morning_ritual # Deprecated in favour of 5MJ
-
-    pdf.move_down 10
     print_tasks(pdf)
     print_random_activity(pdf)
   end
 
   # Header.
   def print_header(pdf)
-    pdf.text day.strftime("%A %-d/%-m/%Y #{day.bank_holiday if day.bank_holiday?}"), style: :bold, color: self.class::HEADER_COLOUR, align: :center, size: 14
+    pdf.text self.day_title, self.day_title_options
     pdf.move_down 10
-    memo = Memos[:productivity].sample
-    pdf.text memo, style: :italic, size: 11, align: :center
+    pdf.text self.memo, style: :italic, size: 11, align: :center
+  end
+
+  def day_title
+    day.strftime("%A %-d/%-m/%Y")
+  end
+
+  def day_title_options
+    {style: :bold, align: :center, size: 14}
+  end
+
+  def memo
+    Memos[:productivity].sample
   end
 
   def schedule_items

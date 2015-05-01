@@ -1,8 +1,11 @@
 class SaturdaySchedule < Schedule
-  HEADER_COLOUR = '330099'
-
   def self.match?(month, day)
     day.saturday?
+  end
+
+  # Instance methods.
+  def day_title_options
+    super.merge(color: '330099')
   end
 
   def setup
@@ -11,6 +14,7 @@ class SaturdaySchedule < Schedule
     # Do bigger shopping on the first Saturday of any month.
     if self.day.day <= 6
       self.tasks.important.push('Shopping for clothes and bigger items (including on Amazon).')
+      # TODO: Always stick to a theme. Skinny ties or so.
     end
 
     self.tasks.important.push('Buy food for the next week.')
