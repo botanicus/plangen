@@ -192,6 +192,11 @@ class Schedule
   end
 
   # Fasting, reading fasting, shopping fasting etc.
+  # cleaning.
+  # Reading every day.
+  # 4 important areas.
+  # Clean as you go? Vs. chunking.
+  # Random act of kindness every day.
   def this_week_tie_knot(pdf)
     Memos[:tie_knots].shift if day.monday?
 
@@ -201,6 +206,7 @@ class Schedule
 
   # Page 3 - ????.
   def print_third_page(pdf)
+    pdf.text "This page has been left unintentionally blank."
   end
 
   # Page 4 – reflection.

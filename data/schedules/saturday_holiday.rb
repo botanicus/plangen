@@ -20,3 +20,14 @@ class SaturdaySchedule < Schedule
     self.tasks.important.push('Buy food for the next week.')
   end
 end
+
+class HolidaySchedule < SaturdaySchedule
+  def self.match?(month, day)
+    day.bank_holiday? && ! day.weekend?
+  end
+
+  # Instance methods.
+  def day_title
+    "#{super} #{day.bank_holiday}"
+  end
+end
